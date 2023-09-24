@@ -1,0 +1,25 @@
+<launch>
+	<!-- gate planner args -->
+	<arg name="name" default="through_gate_planner"/>
+	<arg name="local_position_topic" default="/current_pose"/>
+	<arg name="current_gate_topic" default="/current_marker"/>
+	<arg name="found_marker_list_topic" default="/found_marker_list_topic"/>
+	<arg name="current_waypoint_topic" default="/current_waypoint"/>
+	<arg name="next_waypoint_service" default="/next_gate_waypoint"/>
+	<arg name="update_waypoint_service" default="/update_gate_waypoint"/>
+
+	<!-- other args -->
+	<arg name="gate_path_length" default="3"/>
+
+	<node pkg="gate_planner" name="$(arg name)"
+	type="through_gate_planner.py" output="screen" respawn="false">
+		<param name="local_position_topic" value="$(arg local_position_topic)"/>
+		<param name="current_gate_topic" value="$(arg current_gate_topic)"/>
+		<param name="found_marker_list_topic" value="$(arg found_marker_list_topic)"/>
+		<param name="current_waypoint_topic" value="$(arg current_waypoint_topic)"/>
+		<param name="next_waypoint_service" value="$(arg next_waypoint_service)"/>
+		<param name="update_waypoint_service" value="$(arg update_waypoint_service)"/>
+
+		<param name="gate_path_length" value="$(arg gate_path_length)"/>
+	</node>
+</launch>
